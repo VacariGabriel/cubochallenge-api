@@ -1,4 +1,4 @@
-/* const { Schema, model } = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 const ShareholderSchema = new Schema({
     name: {
@@ -17,4 +17,4 @@ const ShareholderSchema = new Schema({
     timestamps: true
 });
 
-module.exports = model("Shareholder", ShareholderSchema); */
+module.exports = model("Shareholder", ShareholderSchema);

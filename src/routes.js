@@ -1,10 +1,9 @@
-const express = require('express');
+const routes = require('express').Router();
 const ShareholderController = require('./controllers/ShareholderController');
 
-const routes = express.Router();
 
-routes.get('/', ShareholderController.index);
-routes.post('/', ShareholderController.store);
+routes.get('/', ShareholderController.all);
+routes.post('/', ShareholderController.addNewShareHolder);
 
 
 module.exports = routes;

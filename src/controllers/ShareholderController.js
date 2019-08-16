@@ -1,31 +1,29 @@
 const Shareholder = require('../models/Shareholder');
 
 module.exports = {
-    index(req, res) {
+    all(req, res) {
         Shareholder.find({}, function(err, all) {
             if(err) {
                 res.status(500);
-                return res.json({ 'error': 'Estamos com problemas, desculpe!'})
-            } else if (all == false) {
+                return res.json({ 'errorMessage': 'Estamos com problemas, desculpe!'})
+            } else if (!all) {
                 res.status(200);
-                return res.json({ 'error': 'nenhum cadastro encontrado'});
-            } else {
-                res.status(200);
-                return res.json(all);
+                return res.json({ 'errorMessage': 'nenhum cadastro encontrado'});
             }
+            
+            res.status(200);
+            return res.json(all);
         });
     },
 
-    async store(req, res) {
+    async addNewShareHolder(req, res) {
         const {name, surname, percentage } = req.body;
 
         const userExists = await Shareholder.findOne({ name });
 
         if(userExists) {
             res.status(400);
-            return res.json({
-                "error": "Não pode ser cadastrado duas vezes"
-            });
+            return res.json({ "errorMessage": "Não pode ser cadastrado duas vezes" });
         }
         
         const shareHolder = await Shareholder.create({

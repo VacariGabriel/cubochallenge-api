@@ -1,7 +1,7 @@
 const express = require('express');
 const server = express();
 const mongoose = require('mongoose');
-const routes = require('./routes');
+const routes = require('./routes/routes');
 //const cors = require('cors');
 
 
@@ -16,5 +16,5 @@ server.use(routes);
 
 
 server.listen(3000, () => {
-    console.log('Servidor rodando na porta 3000');
+    console.log('Servidor Online na porta 3000');
 });

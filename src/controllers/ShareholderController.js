@@ -10,20 +10,24 @@ module.exports = {
                 res.status(200);
                 return res.json({ 'errorMessage': 'nenhum cadastro encontrado'});
             }
-            
-            res.status(200);
-            return res.json(all);
+                res.status(200);
+                return res.json(all);
         });
     },
 
-    async addNewShareHolder(req, res) {
+    async addNewShareholder(req, res) {
         const {name, surname, percentage } = req.body;
 
-        const userExists = await Shareholder.findOne({ name });
+        const userExists = await Shareholder.findOne({ 
+            name,
+            surname
+        });
 
         if(userExists) {
             res.status(400);
-            return res.json({ "errorMessage": "Não pode ser cadastrado duas vezes" });
+            return res.json({
+                'errorMessage': 'Não pode ser cadastrado duas vezes'
+            });
         }
         
         const shareHolder = await Shareholder.create({

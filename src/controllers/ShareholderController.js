@@ -1,6 +1,6 @@
 const Shareholder = require('../models/Shareholder');
 
-const allShareholders = async (req, res) => {
+const getAllShareholders = async (req, res) => {
   try {
     const shareholders = await Shareholder.find();
     if (!shareholders) {
@@ -38,6 +38,6 @@ const addNewShareholder = async (req, res) => {
 };
 
 module.exports = {
-  allShareholders,
+  getAllShareholders,
   addNewShareholder,
 };

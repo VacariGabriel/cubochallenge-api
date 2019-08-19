@@ -1,43 +1,43 @@
 const Shareholder = require('../models/Shareholder');
 
+const allShareholders = async (req, res) => {
+  try {
+    const shareholders = await Shareholder.find();
+    if (!shareholders) {
+      res.status(200).json({ message: 'Nenhum cadastro encontrado' });
+    }
+    res.status(200).json(shareholders);
+  } catch (err) {
+    res.status(400).json({ message: 'Estamos com problemas, desculpe!' });
+  }
+};
+
+const addNewShareholder = async (req, res) => {
+  const { name, surname, percentage } = req.body;
+
+  try {
+    const userExists = await Shareholder.findOne({
+      name,
+      surname,
+    });
+
+    if (userExists) {
+      res.status(400).json({
+        message: 'Não pode ser cadastrado duas vezes',
+      });
+    }
+    const shareHolder = await Shareholder.create({
+      name,
+      surname,
+      percentage,
+    });
+    res.status(201).json(shareHolder);
+  } catch (err) {
+    res.status(400).json({ message: 'Erro ao cadastrar.' });
+  }
+};
+
 module.exports = {
-    all(req, res) {
-        Shareholder.find({}, function(err, all) {
-            if(err) {
-                res.status(500);
-                return res.json({ 'errorMessage': 'Estamos com problemas, desculpe!'})
-            } else if (!all) {
-                res.status(200);
-                return res.json({ 'errorMessage': 'nenhum cadastro encontrado'});
-            }
-                res.status(200);
-                return res.json(all);
-        });
-    },
-
-    async addNewShareholder(req, res) {
-        const {name, surname, percentage } = req.body;
-
-        const userExists = await Shareholder.findOne({ 
-            name,
-            surname
-        });
-
-        if(userExists) {
-            res.status(400);
-            return res.json({
-                'errorMessage': 'Não pode ser cadastrado duas vezes'
-            });
-        }
-        
-        const shareHolder = await Shareholder.create({
-            name,
-            surname,
-            percentage
-        }); 
-        
-        res.status(201);
-        return res.json(shareHolder);
-    },
-
+  allShareholders,
+  addNewShareholder,
 };

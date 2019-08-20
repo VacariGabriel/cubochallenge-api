@@ -1,11 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const routes = require('./routes/routes');
+require('dotenv').config();
 
 const server = express();
 
 mongoose.connect(
-  'mongodb+srv://omnistack:omnistack@cluster0-3es5p.mongodb.net/test?retryWrites=true&w=majority',
+  process.env.DB_HOST,
   {
     useNewUrlParser: true,
   },

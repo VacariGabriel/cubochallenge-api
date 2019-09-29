@@ -8,7 +8,7 @@
 - Project will run on `http://localhost:3000`
 
 ## Description 
-This project consists in a CRUD REST API that provides shareholders manipulation.
+This project consists in a REST API that provides shareholders manipulation.
 
 ### Objectives
 - Show a demo API using a simple server setup with Express.js.

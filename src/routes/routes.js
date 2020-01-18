@@ -1,7 +1,8 @@
 const routes = require('express').Router();
-const { getAllShareholders, addNewShareholder } = require('../controllers/ShareholderController');
+const { getAllShareholders, addNewShareholder, updateShareholder } = require('../controllers/ShareholderController');
 
 routes.get('/', getAllShareholders);
 routes.post('/', addNewShareholder);
+routes.put('/', updateShareholder);
 
 module.exports = routes;

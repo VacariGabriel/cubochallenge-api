@@ -4,6 +4,7 @@
 
 - Download or clone this repo
 - Run `npm install` to download project dependecies
+- Define your environment variable in .env
 - Run `npm start`
 - Project will run on `http://localhost:3000`
 

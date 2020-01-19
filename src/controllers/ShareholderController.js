@@ -57,8 +57,25 @@ const updateShareholder = async (req, res) => {
   }
 };
 
+const deleteShareholder = async (req, res) => {
+  const { name, surname } = req.body;
+
+  try {
+    const deleteShareholder = await Shareholder.findOneAndRemove( {name, surname} );
+
+    if(!deleteShareholder){
+      res.status(200).json({ message: "Nenhum cadastro encontrado"});
+    } else{
+      res.status(200).json({ message: "deletado com sucesso"});
+    }
+  } catch (err) {
+    res.status(500).json({ message: "Estamos com problema, desculpe!"});
+  }
+}; 
+
 module.exports = {
   getAllShareholders,
   addNewShareholder,
-  updateShareholder
+  updateShareholder,
+  deleteShareholder
 };

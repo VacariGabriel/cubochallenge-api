@@ -14,8 +14,6 @@ mongoose.connect(
 
 mongoose.set('useFindAndModify', false);
 
-
-
 server.use(express.json());
 server.use(routes);
 

@@ -17,6 +17,6 @@ mongoose.set('useFindAndModify', false);
 server.use(express.json());
 server.use(routes);
 
-server.listen(3000, () => {
-  console.log('Servidor Online na porta 3000');
+server.listen(process.env.PORT, () => {
+  console.log(`Server is online`);
 });

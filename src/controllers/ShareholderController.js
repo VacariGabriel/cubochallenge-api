@@ -16,12 +16,12 @@ const addNewShareholder = async (req, res) => {
   const { name, surname, percentage } = req.body;
 
   try {
-    const userExists = await Shareholder.findOne({
+    const shareHolderExists = await Shareholder.findOne({
       name,
       surname,
     });
 
-    if (userExists) {
+    if (shareHolderExists) {
       res.status(400).json({
         message: 'Não pode ser cadastrado duas vezes',
       });
